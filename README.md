@@ -6,7 +6,7 @@ A program to write todos with local memory .
 
 ## Demo
 
-https://cute-cocada-015285.netlify.app/
+https://endearing-horse-391c6e.netlify.app/
 
 ## Technologies
 
