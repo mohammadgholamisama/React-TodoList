@@ -88,16 +88,7 @@
     font-size: 20px;
 }
 
-@media only screen and (max-width:540px) {
-    .todo-add__input {
-        padding: 5px 10px;
-        margin-right: 5px;
-        width: auto;
-    }
-}
-
 /* todo list */
-
 
 .todo-list__ul {
     padding: 0 2px;
@@ -128,6 +119,20 @@
 
 .todo-text {
     font-size: 17px;
+    overflow: auto;
+    max-width: 90%;
+    padding: 5px 0;
+}
+
+.todo-text::-webkit-scrollbar {
+    background-color: #bc89ff;
+    border-radius: 5px;
+    height: 5px;
+}
+
+.todo-text::-webkit-scrollbar-thumb {
+    background-color: #8E49E8;
+    border-radius: 5px;
 }
 
 .todo-icon__handler {
@@ -186,7 +191,24 @@
 .todo-footer__link {
     color: rgb(21, 255, 0);
 }
+
 .todo-footer__link:hover {
     text-decoration: none;
     color: rgb(255, 238, 0);
+}
+
+/* media */
+
+@media only screen and (max-width:540px) {
+    .todo-add__input {
+        padding: 5px 10px;
+        margin-right: 5px;
+        width: auto;
+    }
+
+    .todo-text {
+        overflow: auto;
+        max-width: 200px;
+        padding: 5px 0;
+    }
 }
