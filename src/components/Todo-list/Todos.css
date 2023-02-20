@@ -126,9 +126,10 @@
     background-color: #8E49E8;
 }
 
-.todo-text{
+.todo-text {
     font-size: 17px;
 }
+
 .todo-icon__handler {
     position: absolute;
     padding: 0 20px;
@@ -150,6 +151,7 @@
 .complate-todo__icon {
     background-color: rgb(60, 206, 2);
 }
+
 .remove-todo__icon:hover {
     background-color: rgb(172, 0, 0);
 }
@@ -164,4 +166,27 @@
 
 .todo-list__li:hover .complate-todo__icon {
     right: 55px;
+}
+
+/* todo footer */
+
+
+.todo-footer {
+    background-color: #0000003b;
+    margin-top: 30px;
+    padding: 7px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.todo-footer__text {
+    color: #fff;
+}
+
+.todo-footer__link {
+    color: rgb(21, 255, 0);
+}
+.todo-footer__link:hover {
+    text-decoration: none;
+    color: rgb(255, 238, 0);
 }

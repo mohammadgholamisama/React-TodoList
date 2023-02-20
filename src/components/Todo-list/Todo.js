@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { FaPlus } from 'react-icons/fa'
 import Todolist from './Todo-list'
+import TodoFooter from './Todo-footer'
 import './Todos.css'
 
 
@@ -89,55 +90,59 @@ export default class Todo extends Component {
 
     render() {
 
-        window.onload = ()=>{
-            let loadTodos = JSON.parse(localStorage.getItem('todos')) 
-           if(loadTodos){
-            this.setState({
-                todos: loadTodos
-            })
-           }
+        window.onload = () => {
+            let loadTodos = JSON.parse(localStorage.getItem('todos'))
+            if (loadTodos) {
+                this.setState({
+                    todos: loadTodos
+                })
+            }
         }
 
         return (
-            <div className='todo-app' >
-                <form className="todo-header" action="form" onSubmit={this.addTodo}>
-                    <span className='app-name'>Todo List</span>
-                    <div className="todos-selects">
-                        <span className='todolist-date'>{this.state.date.toDateString()}</span>
+            <>
+                <div className='todo-app' >
+                    <form className="todo-header" action="form" onSubmit={this.addTodo}>
+                        <span className='app-name'>Todo List</span>
+                        <div className="todos-selects">
+                            <span className='todolist-date'>{this.state.date.toDateString()}</span>
 
-                        <select name="todos-filters" className='todos-filters' onChange={this.todoFilters}>
-                            <option className='todos-filter__btn' value='all'>all</option>
-                            <option className='todos-filter__btn' value='complated'>complated</option>
-                            <option className='todos-filter__btn' value='uncomplated'>uncomplated</option>
-                        </select>
+                            <select name="todos-filters" className='todos-filters' onChange={this.todoFilters}>
+                                <option className='todos-filter__btn' value='all'>all</option>
+                                <option className='todos-filter__btn' value='complated'>complated</option>
+                                <option className='todos-filter__btn' value='uncomplated'>uncomplated</option>
+                            </select>
+                        </div>
+                        <div className="todos-add">
+                            <input type="text" className='todo-add__input' placeholder='Add your new todo . . ' maxLength={30} value={this.state.todoText} onChange={this.inputHandler} />
+                            <button className='todo-add__btn' disabled={!this.state.todoText} ><i className='add-icon'><FaPlus /></i></button>
+                        </div>
+                    </form>
+
+                    {/* todo list */}
+
+                    <div className="todo-list">
+                        <ul className='todo-list__ul'>
+                            {this.state.status === 'all' && this.state.todos.map(todo => (
+                                <Todolist {...todo} key={todo.id} onActive={this.activeTodo} onRemove={this.removeTodo}></Todolist>
+                            ))}
+
+                            {this.state.status === 'complated' && this.state.todos.filter(t => t.complated).map(todo => (
+                                <Todolist {...todo} key={todo.id} onActive={this.activeTodo} onRemove={this.removeTodo}></Todolist>
+                            ))}
+
+                            {this.state.status === 'uncomplated' && this.state.todos.filter(t => !t.complated).map(todo => (
+                                <Todolist {...todo} key={todo.id} onActive={this.activeTodo} onRemove={this.removeTodo}></Todolist>
+                            ))}
+
+                        </ul>
                     </div>
-                    <div className="todos-add">
-                        <input type="text" className='todo-add__input' placeholder='Add your new todo . . ' maxLength={30} value={this.state.todoText} onChange={this.inputHandler} />
-                        <button className='todo-add__btn' disabled={!this.state.todoText} ><i className='add-icon'><FaPlus /></i></button>
-                    </div>
-                </form>
 
-                {/* todo list */}
 
-                <div className="todo-list">
-                    <ul className='todo-list__ul'>
-                        {this.state.status === 'all' && this.state.todos.map(todo => (
-                            <Todolist {...todo} key={todo.id} onActive={this.activeTodo} onRemove={this.removeTodo}></Todolist>
-                        ))}
-
-                        {this.state.status === 'complated' && this.state.todos.filter(t => t.complated).map(todo => (
-                            <Todolist {...todo} key={todo.id} onActive={this.activeTodo} onRemove={this.removeTodo}></Todolist>
-                        ))}
-
-                        {this.state.status === 'uncomplated' && this.state.todos.filter(t => !t.complated).map(todo => (
-                            <Todolist {...todo} key={todo.id} onActive={this.activeTodo} onRemove={this.removeTodo}></Todolist>
-                        ))}
-
-                    </ul>
                 </div>
+                <TodoFooter />
 
-
-            </div>
+            </>
         )
     }
 }
