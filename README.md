@@ -6,7 +6,7 @@ A program to write todos with local memory .
 
 ## Demo
 
-https://endearing-horse-391c6e.netlify.app/
+https://react-todo-list-demoo.netlify.app
 
 ## Technologies
 
